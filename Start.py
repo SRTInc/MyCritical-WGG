@@ -7,7 +7,7 @@ def start_game(Name,game,check,is_New_Name):
 
 
     def getwords():
-        fobj = open(r"Randwords.txt", "r+")
+        fobj = open(r"C:\Safi T\Projects\Github\Shared\Randwords.txt", "r+")
         get = fobj.read().splitlines()
         fobj.close()
         return get
