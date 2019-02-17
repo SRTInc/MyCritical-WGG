@@ -1,17 +1,40 @@
 import random
+import Start
+import Leaderboard
 import game
-#Name = input('Enter your name: ')
-Name = 'Safi'
-print('\n',Name,' Welcome to the guess the four-lettered word game!\n')
-print('------------------------------------------------------------\n')
-con = 'y' # var for check the to continue the game
-print('The rules are simple...\nYou must a guess a four letter word and you have 15 chances to do so :P')
-print('\n Sounds easy right? Lets get on with it!\n')
+#Name = 'Safi' Testing i/p
+check=True
+def get_the_players():
+    get_players = open(r"Players.txt",'r+')
+    gp = get_players.read().splitlines()
+    get_players.close()
+    return gp
+gp = get_the_players()
+#print(gp) To check whether get_the_players() works
+while check == True :
+    print('\n\t\t\tWORD-GUESS GAME\n')
+    print('Main menu')
+    print('---------\n')
+    print('\n\t\t1.START GAME')
+    print('\n\t\t2.LEADERBOARD')
+    print('\n\t\t3.EXIT') 
+    choice = int(input('Enter the option:'))
 
-def getwords():
-    fobj = open(r"filename.txt","r+")
-    get = fobj.read().splitlines()
-    return get
-get = getwords()
-game.play(con,get,Name)
-#print(get) #check if the words are fetched from file
+    if choice==1:
+        Name = input('\nEnter your name: ')
+        if Name in gp:
+            is_New_Name = 'no'   
+            Start.start_game(Name,game,check,is_New_Name)
+        else:
+            is_New_Name = 'yes'
+            Start.start_game(Name,game,check,is_New_Name)
+
+    elif choice==2:
+        Leaderboard.score_board()
+            
+
+    elif choice==3:
+        exit(0)
+
+
+#Saffi     5  2019-02-17 00:03:25.922398

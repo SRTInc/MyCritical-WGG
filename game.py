@@ -1,6 +1,9 @@
 import random
-def play(con,get,Name):
+import datetime
+fobj = open(r"Playerscore.txt","a+")
+def play(con,get,Name,check,is_New_Name):
     found = False
+    score = 0
     while(con == 'y'):
         #the random string() has been temporarily removed to check for other solutions
         '''def randstring():
@@ -36,11 +39,8 @@ def play(con,get,Name):
                     no = str(g_count)  # to convert the g_count to str becoz v can't concat str and int
                     print('GREAT!!! B-) ' + Name + ' guessed word is correct, ' + Name + ' win by ' + no + '  guess')
                     found = True
-                    con=input('Do you want to continue the game(y/n): ')
-                    if con == 'n':
-                        print('\nThank you for playing the game ;-) ')
-
-
+                    score+=1 #Now the score is incremented by one
+                    print('Now your score is ',score,'\n')
                     out_of_guess = True  # After find the value change the boolean to stop the looping
                 else:
                     for x in range(0, 4):
@@ -86,14 +86,26 @@ def play(con,get,Name):
                     g_count += 1
                     count = str(g_count)
                     print('Guessing count is ' + count)
+            
             elif found == False:
                 g_word = ''  # guess word
                 g_count = 1  # this is guessing count to limit the guess
-                print('Nice try :-) Out of chance, U lose!!! ;-P')
+                print('\nNice try :-) Out of chance, U lose!!! ;-P')
+                print('Your score now is ',score,'\n')
+
+                if is_New_Name == 'yes':
+                    x = datetime.datetime.now()
+                    fobj.write("\n%s        %d  %s"%(Name,score,x))
+                    fobj.close()
+                    
+
+             
+                score = 0
                 show=input('Do you want to know the secret word which make you lose this game(y/n): ')
                 if show == 'y':
                     print('The secret word is  ' + s_word)
                 con = input('Do you want to continue the game(y/n): ')
+                score = 0
                 if con == 'n':
                     print('\nThank you for playing the game ;-) ')
                     break
