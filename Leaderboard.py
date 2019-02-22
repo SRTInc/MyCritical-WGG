@@ -1,6 +1,6 @@
 def score_board():
     def get_the_playerscore():
-            get_playerscore = open(r"C:\Safi T\Projects\Github\Shared\Playerscore.txt",'r+')
+            get_playerscore = open(r"Playerscore.txt",'r+')
             gs = get_playerscore.read().splitlines()
             get_playerscore.close()
             return gs
